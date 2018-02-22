@@ -1,0 +1,22 @@
+{
+  "name": "class_demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo1": "node build/ts_demo1.js",
+    "typedemo": "node build/type_demo.js",
+    "interfacedemo": "node build/interface_demo.js",
+    "classdemo": "node build/class_demo.js",
+    "externaldemo": "node build/external_demo.js",
+    "funcdemo": "node build/func_demo.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node-fetch": "^1.6.7",
+    "node-fetch": "^2.0.0"
+  }
+}

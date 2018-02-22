@@ -1,0 +1,18 @@
+{
+  "name": "typescript_exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ex1": "node build/ex1.js",
+    "ex2": "node build/ex2.js",
+    "ex3": "node build/ex3.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node-fetch": "^1.6.7"
+  }
+}
