@@ -1,8 +1,16 @@
+const fetch = require('node-fetch');
 const URL = "https://swapi.co/api/people/";
- 
+
 function fetchPerson(url){
-  //Complete this function
+  return fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      return data;
+    })
 }
+
 async function printNames() {
   console.log("Before");
   const person1 = await fetchPerson(URL+1);
@@ -11,3 +19,6 @@ async function printNames() {
   console.log(person2.name)
   console.log("After all"); 
 }
+
+printNames()
+
