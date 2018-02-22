@@ -1,4 +1,4 @@
-let names = ['Lars', 'Jan', 'Peter', 'Bo', 
+const names = ['Lars', 'Jan', 'Peter', 'Bo', 
             'Frederik', 'Ib', 'Kim', 'Sebastian'];
 
 // 1
