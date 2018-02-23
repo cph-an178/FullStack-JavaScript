@@ -26,3 +26,11 @@ build/Release
 # Dependency directory
 # https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
 node_modules
+
+# vscode
+.vscode
+
+# Opgaver jeg ikke vil uploade på git
+# Periode 1
+.\Period1\HelloWorld_typescript\
+.\Period1\learnyounode\
