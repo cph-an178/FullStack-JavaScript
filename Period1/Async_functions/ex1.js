@@ -1,15 +1,11 @@
 const fetch = require('node-fetch');
 const URL = "https://swapi.co/api/people/";
 
-function fetchPerson(url){
+function fetchPerson(url) {
   return fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      return data;
-    })
-}
+      .then(res => res.json())
+      .then(data => data)
+};
 
 async function printNames() {
   console.log("Before");
