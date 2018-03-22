@@ -5,7 +5,8 @@ var JobSchema = new Schema({
   type: String,
   company: String,
   companyUrl : String
-})
+}, {_id : false})
+
 var UserSchema = new Schema({
   firstName: String,
   lastName: String,
