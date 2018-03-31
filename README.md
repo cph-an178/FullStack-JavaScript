@@ -13,6 +13,9 @@ Alexander Nielsen:
     - [Webpacks](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/webpackExercise)
     - [TypeScript](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/typescript_exercise)
 
+- ### [Period 2:](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period2)
+    - [Mini Project - part 1](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period2/miniproject)
+
 ---
 ### Usefull links:
 
