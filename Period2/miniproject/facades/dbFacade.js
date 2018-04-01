@@ -9,7 +9,7 @@ var addUser = function (firstName, lastName, userName, password) {
 }
 var addJobToUser = function (userId, type, company, companyUrl) {
     var job = { type, company, companyUrl };
-    User.findByIdAndUpdate(userId, { job: testJob }, (err) => {
+    User.findByIdAndUpdate(userId, { job: job }, (err) => {
         if (err) console.log(err)
     });
     /* In case you need to add more than one job
@@ -23,7 +23,7 @@ var addJobToUser = function (userId, type, company, companyUrl) {
 var addLoctaionBlog = function (info, author, longitude, latitude) {
     var LocationBlogDetail = { info, pos: { longitude, latitude }, author };
     var blog = new LocationBlog(LocationBlogDetail);
-    return blog.save()
+    return blog.save();
 }
 var likeLocationBlog = function (locId, userId) {
     LocationBlog.findById(locId, (err, data) => {
