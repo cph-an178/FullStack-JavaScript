@@ -21,24 +21,25 @@ describe("Testing dbFacade", function(){
             var getUsers = await User.find({}).exec();
 
             expect(getUsers.length).to.be.equal(2);
-            // Used to check id in next test
-            console.log("Kurts id:" + users[0]._id)
         });
     });
     describe("Add job to user", function(){
         it("Should add Blogger at Time to Kurts job", async function(){
             // Get user Kurt
             var kurt = await User.findOne({userName: "kw"}).exec();
-            // See if we get the correct id
-            console.log("Kurts id:" + kurt._id);
             // Function which adds a job to the mongoDB
             await facade.addJobToUser(kurt._id, "Blogger", "Time", "Time.com");
-            // See if we can get the type
-            console.log(kurt.job.type); 
-            // For some reason i cant... 
+            // Update user Kurt
+            kurt = await User.findOne({userName: "kw"}).exec();
 
-            //expect(kurt.job.type).to.be.equal("Blogger");
+            expect(kurt.job[0].type).to.be.equal("Blogger");
 
         })
     })
 });
+/* 
+// Clean tests from db
+after(async function() {
+    await User.remove({});
+});
+*/
