@@ -5,6 +5,7 @@ Electives 4. Semester - Spring 2018
 Alexander Nielsen:
 
 ## Quick Navigation:
+- ### [Mini Project](https://github.com/cph-an178/FullStack-JavaScript/tree/master/miniproject)
 - ### [Period 1:](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1)
     - [Vanilla Javascript](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/JavaScriptExercises)
     - [Promises](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/PromisesExercise)
@@ -12,9 +13,6 @@ Alexander Nielsen:
     - [es2015](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/es2015_exercises)
     - [Webpacks](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/webpackExercise)
     - [TypeScript](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/typescript_exercise)
-
-- ### [Period 2:](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period2)
-    - [Mini Project - part 1](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period2/miniproject)
 
 ---
 ### Usefull links:
