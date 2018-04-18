@@ -1,4 +1,4 @@
-# Period 2 - Mini Project part 1
+# Mini Project
 
 Dette er afleveringen for periode 2.
 

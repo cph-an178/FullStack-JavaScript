@@ -2,4 +2,9 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p #{msg} this is a express pug project
+  form(action = "/users" method = "GET")
+    input(type= "text")
+    input(type= "password")
+    button(type= "submit") login
+  
