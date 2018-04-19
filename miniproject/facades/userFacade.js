@@ -11,22 +11,27 @@ function addUser(firstName, lastName, userName, password) {
     var user = new User(userDetail);
     return user.save();
 }
-function addJobToUser(userId, type, company, companyUrl) {
+
+async function addJobToUser(userId, type, company, companyUrl) {
     var job = { type, company, companyUrl };
-    User.findOneAndUpdate(userId, { job: job }, (err) => {
-        if (err) console.log(err)
-    });
-    /* In case you need to add more than one job
-    User.findById(userId, (err, data) => {
-        if (err) console.log(err);
-        data.job.push(job);
-        data.save();
-    });
-    */
+    //In case you need to add more than one job
+    try {
+        const user = await User.findById(userId).exec();
+        user.job.push(job);
+        return user.save();
+    }
+    catch(error) {
+        console.log("Ups")
+    };
+}
+
+function findByUsername(username) {
+    return User.findOne({userName: username}).exec();
 }
 
 module.exports = {
     findAllUsers: findAllUsers,
     addUser: addUser,
     addJobToUser: addJobToUser,
+    findByUsername: findByUsername,
 }

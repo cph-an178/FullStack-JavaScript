@@ -22,5 +22,9 @@ UserSchema.pre("save",function(next){
   this.password = "jdfklsajfldkasj"+this.password;
   this.lastUpdated = new Date();
   next();
-})
+});
+UserSchema.pre("findOne",function(next){
+  this.password = "jdfklsajfldkasj"+this.password;
+  next();
+});
 module.exports = mongoose.model("User",UserSchema);

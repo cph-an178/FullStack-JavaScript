@@ -6,13 +6,15 @@ function addLoctaionBlog(info, author, longitude, latitude) {
     var blog = new LocationBlog(LocationBlogDetail);
     return blog.save();
 };
-function likeLocationBlog(locId, userId) {
-    LocationBlog.findById(locId, (err, data) => {
-        // .findByIdAndUpdate would be cool
-        if (err) console.log(err);
-        data.likedBy.push(userId);
-        data.save();
-    })
+async function likeLocationBlog(locId, userId) {
+    try{
+        const loc = await LocationBlog.findById(locId).exec();
+        loc.likedBy.push(userId);
+        return loc.save();
+    }
+    catch(error){
+        console.log("Ups")
+    };
 };
 
 module.exports = {
