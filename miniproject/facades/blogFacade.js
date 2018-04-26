@@ -16,8 +16,11 @@ async function likeLocationBlog(locId, userId) {
         console.log("Ups")
     };
 };
-
+function findLocationByInfo(info) {
+    return LocationBlog.findOne({info: info}).exec();
+}
 module.exports = {
     addLoctaionBlog: addLoctaionBlog,
-    likeLocationBlog: likeLocationBlog
+    likeLocationBlog: likeLocationBlog,
+    findLocationByInfo: findLocationByInfo
 }

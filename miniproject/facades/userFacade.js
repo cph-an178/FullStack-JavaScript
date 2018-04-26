@@ -14,7 +14,6 @@ function addUser(firstName, lastName, userName, password) {
 
 async function addJobToUser(userId, type, company, companyUrl) {
     var job = { type, company, companyUrl };
-    //In case you need to add more than one job
     try {
         const user = await User.findById(userId).exec();
         user.job.push(job);

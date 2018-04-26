@@ -1,21 +1,30 @@
 require("../dbSetup.js");
 const expect = require("chai").expect;
-var userFacade = require("../facades/userFacade")
-var blogFacade = require("../facades/blogFacade")
+var userFacade = require("../facades/userFacade");
+var blogFacade = require("../facades/blogFacade");
+var loginFacade = require("../facades/loginFacade");
 
 var User = require("../models/user")
 var LocationBlog = require("../models/locationBlog")
+var Position = require("../models/position")
 
 beforeEach(async function() {
     // Clearing Users and LocationBlogs from the database
     await User.remove({});
     await LocationBlog.remove({});
+    await Position.remove({});
     // Adding two users to the database
     var userPromises = [
         userCreate("Kurt", "Wonnegut", "kw", "passw0rd"),
         userCreate("Bo", "Lemmingsen", "bl", "654321")
     ];
     var users = await Promise.all(userPromises);
+    // Adding posistion to our two users
+    var posPromises = [
+        positionCreate(12.562179565429688, 55.79143827447144, users[0]._id, true),
+        positionCreate(12.487678527832031, 55.77386963550729, users[1]._id, true)
+    ];
+    var pos = await Promise.all(posPromises);
     // Adding a LocationBlog to the database
     var blogPromise = LocationBlogCreate("A very cool place", users[0]._id, 12, 52);
     var blog = await Promise.race([blogPromise]);
@@ -90,6 +99,16 @@ describe("Testing BlogFacade", function () {
     })
 })
 
+describe("Testing loginFacade", function(){
+    describe("Login as a user", function() {
+        it("Should return a friend", async function() {
+            // We know our first user is Kurt
+            var friends = await loginFacade("kw", "passw0rd",12.562179565429688, 55.79143827447144, 1000);
+            expect(friends.length).to.be.equal(1);
+        })
+    })
+})
+
 // Fucntion for user and LocationBlog Create for the beforeEact
 function userCreate(firstName, lastName, userName, password) {
     var userDetail = { firstName, lastName, userName, password };
@@ -101,3 +120,11 @@ function LocationBlogCreate(info, author, longitude, latitude) {
     var blog = new LocationBlog(LocationBlogDetail);
     return blog.save()
 }
+function positionCreate(lon, lat, userId, keep) {
+    var posDetail = { user: userId, loc: { coordinates: [lon, lat] } };
+    if(keep) {
+      posDetail.created = "2022-09-25T20:40:21.899Z"; 
+    }
+    var position = new Position(posDetail);
+    return position.save();
+  }
