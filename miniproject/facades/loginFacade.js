@@ -15,6 +15,7 @@ async function login(username, password, longitude, latitude, distance) {
         const pos = await Position.findOneAndUpdate({ user: user._id }, { loc: loc }, { upsert: true }).exec();
 
         const friends = await findFriends(loc, distance * 1000, user._id)
+        console.log(friends);
         return friends;
     }
     catch (err) {
@@ -38,5 +39,5 @@ async function findFriends(point, dist, id) {
     );
 }
 
-
+//Testnod
 module.exports = login;
