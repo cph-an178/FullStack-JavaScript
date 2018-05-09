@@ -3,7 +3,7 @@ import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-nativ
 import { Constants, Location, Permissions, MapView } from 'expo'
 import { Ionicons } from '@expo/vector-icons';
 
-const URL = 'https://0f314a63.ngrok.io/';
+const URL = 'https://63ef683e.ngrok.io/';
 
 export default class App extends React.Component {
   constructor() {
@@ -61,7 +61,7 @@ export default class App extends React.Component {
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevState.friends != this.state.friends) {
-      console.log("Updatede...")
+      console.log(this.state.friends)
     }
   }
   makeMarkers = () => {
