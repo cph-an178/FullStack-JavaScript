@@ -25,19 +25,6 @@ const GET_DOG_PHOTO = gql`
   }
 `;
 
-const DogPhoto = ({ breed }) => (
-    <Query query={GET_DOG_PHOTO} variables={{ breed }}>
-        {({ loading, error, data }) => {
-            if (loading) return null;
-            if (error) return `Error!: ${error}`;
-
-            return (
-                <img src={data.dog.displayImage} style={{ height: 100, width: 100 }} />
-            );
-        }}
-    </Query>
-);
-
 const Dogs = ({ onDogSelected }) => (
     <Query query={GET_DOGS}>
         {({ loading, error, data }) => {
@@ -57,11 +44,35 @@ const Dogs = ({ onDogSelected }) => (
     </Query>
 );
 
+const DogPhoto = ({ breed }) => (
+    <Query
+        query={GET_DOG_PHOTO}
+        variables={{ breed }}
+        skip={!breed}
+        notifyOnNetworkStatusChange
+    >
+        {({ loading, error, data, refetch, networkStatus }) => {
+            if (networkStatus === 4) return "Refetching!";
+            if (loading) return null;
+            if (error) return `Error!: ${error}`;
+
+            return (
+                <div>
+                    <img
+                        src={data.dog.displayImage}
+                        style={{ height: 100, width: 100 }}
+                    />
+                    <button onClick={() => refetch()}>Refetch!</button>
+                </div>
+            );
+        }}
+    </Query>
+);
+
 class Queries extends Component {
     state = { selectedDog: null };
 
     onDogSelected = ({ target }) => {
-        console.log(target.value);
         this.setState(() => ({ selectedDog: target.value }));
     };
     render() {
@@ -70,7 +81,9 @@ class Queries extends Component {
                 <div>
                     <h2>Apollo Queries</h2>
                     <Dogs onDogSelected={this.onDogSelected} />
-                    <DogPhoto />
+                    {this.state.selectedDog && (
+                        <DogPhoto breed={this.state.selectedDog} />
+                    )}
                 </div>
             </ApolloProvider>
         );
