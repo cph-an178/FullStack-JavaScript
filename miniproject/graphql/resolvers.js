@@ -11,10 +11,13 @@ module.exports = resolvers = {
   Query: {
     findAllUsers : () => {
       return userFacade.findAllUsers();
-    },   
+    },
+    findByUsername : (root, {input}) => {
+      return userFacade.findByUsername(input.userName);
+    }   
   },
   Mutation: {
-    addUser: (root, {input}) => {
+    addUser : (root, {input}) => {
       const newUser = new User({
         firstName: input.firstName,
         lastName: input.lastName,

@@ -28,8 +28,13 @@ input userInput {
   lastName : String
 }
 
+input userName {
+  userName: String
+}
+
 type Query {
   findAllUsers : [User]
+  findByUsername(input : userName): User
 }
 
 type Mutation {
