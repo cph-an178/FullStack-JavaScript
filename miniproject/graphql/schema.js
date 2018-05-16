@@ -3,22 +3,37 @@ const resolvers = require("./resolvers");
 
 const typeDefs = `
 type Job {
-  type: String
-  company: String
+  type : String
+  company : String
   companyUrl : String
 }
+
 scalar DateTime
+
 type User {
   _id: ID
-  firstName: String
-  lastName: String
+  firstName : String
+  lastName : String
   userName : String
-  job: [Job]
+  password : String
+  job : [Job]
   created : DateTime
   lastUpdated : DateTime
 }
+
+input userInput {
+  userName : String
+  password : String
+  firstName : String
+  lastName : String
+}
+
 type Query {
-  getAllUsers : [User]
+  findAllUsers : [User]
+}
+
+type Mutation {
+  addUser(input : userInput) : User
 }`
 
 const schema = makeExecutableSchema({typeDefs,resolvers});
