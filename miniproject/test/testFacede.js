@@ -1,4 +1,4 @@
-require("../dbSetup.js");
+require("../dbSetup.js").connect();
 const expect = require("chai").expect;
 var userFacade = require("../facades/userFacade");
 var blogFacade = require("../facades/blogFacade");

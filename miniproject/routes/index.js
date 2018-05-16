@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Mini Project', msg: "Demo project used for Fullstack Javascript"});
+  res.render('index', { title: 'Mini Project', msg: "Miniproject for Fullstack Javascript"});
 });
 
 module.exports = router;
