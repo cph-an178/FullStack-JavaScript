@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "miniproject"
+		},
+		{
+			"path": "miniproject-client"
+		},
+		{
+			"path": "miniproject-react-native"
+		}
+	],
+	"settings": {}
+}

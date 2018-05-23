@@ -1,4 +1,4 @@
-require("./dbSetup.js");
+require("./dbSetup.js").connect();
 
 var User = require("./models/user");
 var LocationBlog = require("./models/locationBlog");
@@ -65,7 +65,7 @@ async function createUserAndPos() {
   await LocationBlog.remove({});
 
   var userPromises = [
-    userCreate("Kurt", "Wonnegut", "Runner1", "atest"),
+    userCreate("Kurt", "Wonnegut", "Kw", "1234"),
     userCreate("Kenny", "Torvesen", "Sailor1", "btest", "Writer", "Time Magazine", "Time.com"),
     userCreate("Filip", "Mikkelsen", "Runner", "ctest", "Firefighter", "Fire Corp", "FireSaveUs.com"),
     userCreate("Casper", "Peterson", "Sailor2", "dtest", "Cop", "Police", "GOV.com"),

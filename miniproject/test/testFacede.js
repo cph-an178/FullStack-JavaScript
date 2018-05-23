@@ -15,7 +15,7 @@ beforeEach(async function() {
     await Position.remove({});
     // Adding two users to the database
     var userPromises = [
-        userCreate("Kurt", "Wonnegut", "kw", "passw0rd"),
+        userCreate("Kurt", "Wonnegut", "Kw", "1234"),
         userCreate("Bo", "Lemmingsen", "bl", "654321")
     ];
     var users = await Promise.all(userPromises);
@@ -45,11 +45,11 @@ describe("Testing userFacade", function () {
     describe("Add job to user", function () {
         it("Should add Blogger at Time to Kurts job", async function () {
             // Get user Kurt
-            var user = await User.findOne({ userName: "kw" }).exec();
+            var user = await User.findOne({ userName: "Kw" }).exec();
             // Adding job to Kurt
             await userFacade.addJobToUser(user._id, "Blogger", "Time", "Time.com");
             //Update user Kurt
-            user = await User.findOne({ userName: "kw" }).exec();
+            user = await User.findOne({ userName: "Kw" }).exec();
 
             expect(user.job[0].type).to.be.equal("Blogger");
         })
@@ -62,9 +62,9 @@ describe("Testing userFacade", function () {
         })
     })
     describe("Find user by username", function () {
-        it("Should find Kurt by his username 'kw'", async function () {
-            // We know that Kurts username is kw
-            var user = await userFacade.findByUsername("kw");
+        it("Should find Kurt by his username 'Kw'", async function () {
+            // We know that Kurts username is Kw
+            var user = await userFacade.findByUsername("Kw");
             expect(user.firstName).to.be.equal("Kurt")
         })
     })
@@ -87,7 +87,7 @@ describe("Testing BlogFacade", function () {
             // first we find a user to like a location
             var user = await userFacade.findByUsername("bl");
             // Then we'll find a author so we can find his locationBlog
-            var author = await userFacade.findByUsername("kw");
+            var author = await userFacade.findByUsername("Kw");
             let blog = await LocationBlog.findOne({ author: author }).exec();
             // Then our user likes the blog
             await blogFacade.likeLocationBlog(blog._id, user._id)
@@ -103,7 +103,7 @@ describe("Testing loginFacade", function(){
     describe("Login as a user", function() {
         it("Should return a friend", async function() {
             // We know our first user is Kurt
-            var friends = await loginFacade("kw", "passw0rd",12.562179565429688, 55.79143827447144, 1000);
+            var friends = await loginFacade("Kw", "1234",12.562179565429688, 55.79143827447144, 1000);
             expect(friends.length).to.be.equal(1);
         })
     })

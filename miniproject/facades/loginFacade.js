@@ -12,7 +12,7 @@ async function login(username, password, longitude, latitude, distance) {
             'type': 'Point',
             'coordinates': [longitude, latitude]
         }
-        const pos = await Position.findOneAndUpdate({ user: user._id }, { loc: loc }, { upsert: true }).exec();
+        const pos = await Position.findOneAndUpdate({ user: user._id }, { loc: loc, created: Date.now() }, { upsert: true, new: true }).exec();
 
         const friends = await findFriends(loc, distance * 1000, user._id)
         return friends;
