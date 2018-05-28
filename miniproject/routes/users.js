@@ -31,4 +31,9 @@ router.get('/findByUsername/:username', async function (req, res) {
   res.send(await userFacade.findByUsername(username));
 });
 
+router.get('/findById/:id', async function (req, res) {
+  const id = req.params.id;
+  res.send(await userFacade.findById(id));
+});
+
 module.exports = router;

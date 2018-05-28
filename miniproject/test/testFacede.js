@@ -68,6 +68,19 @@ describe("Testing userFacade", function () {
             expect(user.firstName).to.be.equal("Kurt")
         })
     })
+    describe("Find user by Id", function() {
+        it("Should find Bo by his id", async function () {
+            // First we need to get his id
+            var user = await User.findOne({userName: "bl"}).exec();
+            var id = user._id;
+            // Now we set user to null so we 
+            user = null;
+            // Now we try to find the user by id
+            user = await userFacade.findById(id);
+            expect(user.firstName).to.be.equal("Bo");
+
+        })
+    })
 });
 
 describe("Testing BlogFacade", function () {

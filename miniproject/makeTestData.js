@@ -31,7 +31,7 @@ async function createUser() {
   await LocationBlog.remove({});
 
   var userPromises = [
-    userCreate("Kim", "Bo", "kim1", "atest"),
+    userCreate("Kim", "Bo", "Kw", "1234"),
     userCreate("Kenny", "Torvesen", "TK", "ctest", "xxx", "comp", "comp.url"),
     userCreate("Filip", "Jensen", "F1l1p", "ctest", "xxx", "comp", "comp.url"),
     userCreate("Casper", "Ib", "CasNas", "ctest", "xxx", "comp", "comp.url"),

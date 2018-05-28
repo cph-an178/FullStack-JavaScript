@@ -1,43 +1,23 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, Button } from 'react-native';
 import { Constants, Location, Permissions, MapView } from 'expo'
-import { Ionicons } from '@expo/vector-icons';
+import Datastore from './components/Datastore';
 
-const URL = 'https://63ef683e.ngrok.io/';
+let datastore = new Datastore();
 
 export default class App extends React.Component {
   constructor() {
     super();
+    this.store = datastore;
     this.state = {
       region: { latitude: 55.7704186, longitude: 12.5117948, latitudeDelta: 0.0922, longitudeDelta: 0.0421 },
       locationResult: null,
       location: { coords: { latitude: 55.7704186, longitude: 12.5117948 } },
       username: '',
       password: '',
-      friends: []
+      friends: [],
+      currentFriend: '',
     };
-  }
-
-  login = (username, password, callback) => {
-    var data = {
-      username: username,
-      password: password,
-      longitude: 12.487678527832031,
-      latitude: 55.77386963550729,
-      distance: 1000
-    }
-    fetch(URL + 'users/login', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    }).then(function (data) {
-      return data.json();
-    }).then(function (data) {
-      callback(data);
-    })
   }
 
   componentDidMount() {
@@ -65,25 +45,28 @@ export default class App extends React.Component {
     }
   }
   makeMarkers = () => {
-    return this.state.friends.map((friend) => {
-      let latLng = {
-        latitude: friend.loc.coordinate[1],
-        longitude: friend.loc.coordinate[0]
-      }
-      return(
-        <MapView.Marker 
-        coordinate={latLng}
-        title={friend.user}
-        description="One of your friends"
-        key={latLng}/>
-      )
-    })
+      return this.state.friends.map((friend, f) => {
+        let latLng = {
+          latitude: friend.loc.coordinates[1],
+          longitude: friend.loc.coordinates[0]
+        }
+        decs = `Lat: ${latLng.latitude}
+        Lng: ${latLng.longitude}`;
+        return (
+          <MapView.Marker
+            key={f}
+            coordinate={latLng}
+            title={friend._id}
+            description={decs}
+          />
+        )
+      })
   }
   submit = async () => {
     try {
       const username = this.state.username;
       const password = this.state.password;
-      this.login(username, password, (data) => {
+      await this.store.login(username, password, (data) => {
         this.setState({ friends: data })
       });
     } catch (err) {
@@ -92,17 +75,20 @@ export default class App extends React.Component {
   };
 
   render() {
+    let decs = `Lat: ${this.state.location.coords.latitude}
+    Lng: ${this.state.location.coords.longitude}`;
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.statusBar} />
-        <Text>username</Text>
+        <Text>Username</Text>
         <TextInput
-          style={styles.input}
+          style={{ height: 40, padding: 2 }}
           onChangeText={(username) => this.setState({ username })}
         />
-        <Text>password</Text>
+        <Text>Password</Text>
         <TextInput
-          style={styles.input}
+          secureTextEntry={true}
+          style={{ height: 40, padding: 2 }}
           onChangeText={(password) => this.setState({ password })}
         />
         <Button
@@ -117,10 +103,9 @@ export default class App extends React.Component {
           <MapView.Marker
             coordinate={this.state.location.coords}
             title="You"
-            description="This is where you are"
+            description={decs}
           />
-          {this.makeMarkers}
-
+          {this.makeMarkers()}
         </MapView>
       </View>
     );

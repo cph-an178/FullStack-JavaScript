@@ -28,9 +28,14 @@ function findByUsername(username) {
     return User.findOne({userName: username}).exec();
 }
 
+function findById(id) {
+    return User.findOne({_id: id}).exec();
+}
+
 module.exports = {
     findAllUsers: findAllUsers,
     addUser: addUser,
     addJobToUser: addJobToUser,
     findByUsername: findByUsername,
+    findById: findById,
 }
