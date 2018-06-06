@@ -223,6 +223,10 @@ async function parallel() {
 
 See PromisesExercise ex1.js
 
+**Async/await**:
+
+See Async_functions exercises
+
 **Error handling with promises**:
 ```javascript
 Promise.race(promise)
@@ -232,7 +236,3 @@ Promise.race(promise)
         // This is where you handle errors in promises
     })
 ```
-
-**Async/await**:
-
-See Async_functions exercises

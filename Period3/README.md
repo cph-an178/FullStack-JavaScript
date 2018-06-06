@@ -13,3 +13,5 @@ http://localhost:3000/geoapi/findNearbyPlayers/12.574539184570312/55.79182430944
 
 Is user in area:
 http://localhost:3000/geoapi/isuserinarea/12.574539184570312/55.7918243094437
+
+I hope i don't get a question about geo-JSON ...
