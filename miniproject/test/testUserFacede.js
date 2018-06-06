@@ -65,8 +65,6 @@ describe("Testing UserFacade", function() {
     })
 });
 
-
-
 // Fucntion for user and LocationBlog Create for the beforeEact
 function userCreate(firstName, lastName, userName, password) {
     var userDetail = { firstName, lastName, userName, password };
