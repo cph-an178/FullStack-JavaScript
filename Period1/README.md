@@ -1,33 +1,6 @@
 # Period 1
 ## Vanilla JavaScript, es2015/15.., Node.js, Babel + Webpack and TypeScript
 
-
-### Explain and Reflect:
->Explain differences between Java and JavaScript. You should include both topics related to the fact that Java is a compiled language and JavaScript a scripted language, and general differences in language features.
-
-Test
-
->Explain the two strategies for improving JavaScript: ES6 (es2015) + ES7, versus Typescript. What does it require to use these technologies: In our backend with Node and in (many different) Browsers.
-
-Typescript er et supersæt.
-
->Explain generally about node.js, and when it “makes sense” and npm, and how it “fits” into the node echo system.
-
-How does node fit in the node ecosystem?? What
- 
->Explain about the Event Loop in Node.js
-
-[![What the heck is the event loop anyway?](http://img.youtube.com/vi/8aGhZQkoFbQ/0.jpg)](http://www.youtube.com/watch?v=8aGhZQkoFbQ)
-
->Explain (some) of the purposes with the tools Babel and WebPack, using  examples from the exercises
-
-Babel er en Javascript compiler og webpack er din egen compiler(?)
-
->Explain the purpose of “use strict” and also Linters, exemplified with ESLint
-
-Når du ikke vil være ond imod din code <3
-
----
 ### Relevant projects:
 - [Vanilla Javascript](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/JavaScriptExercises)
 - [Promises](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/PromisesExercise)
@@ -35,6 +8,43 @@ Når du ikke vil være ond imod din code <3
 - [es2015](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/es2015_exercises)
 - [Webpacks](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/webpackExercise)
 - [TypeScript](https://github.com/cph-an178/FullStack-JavaScript/tree/master/Period1/typescript_exercise)
+
+---
+
+## Explain and Reflect:
+>Explain differences between Java and JavaScript. You should include both topics related to the fact that Java is a compiled language and JavaScript a scripted language, and general differences in language features.
+
+Java er et klasse baseret, objekt-orienteret compile sprog der kører på mange platforme, fra stationære computere til mobiltelefoner. JavaScript er et prototype baseret scripting sprog der primært kører i browsere. Selvom deres navn lyder ens er deres design og kapacitet meget forskellige
+
+Hvis du vil lære programmering til at lave websites, så vil JavaScript være meget nyttigt. Det bruges til script-sider på klienten i browseren og for at tilføje interaktivitet og dynamisk indhold til websites. Men det begynder også at blive brugt mere til server-side programmering (fx Node.js).
+
+Java bruges også på internettet, primært på serversiden, men også på klienten i form af applets. Det er et mere fuldt udstyret sprog, der kan bruges til alt fra back-end servere til grafiske desktop applikationer. Det er meget udbredt i virksomhedsudvikling.
+
+>Explain the two strategies for improving JavaScript: ES6 (es2015) + ES7, versus Typescript. What does it require to use these technologies: In our backend with Node and in (many different) Browsers.
+
+Es2015 (ES6) og ES7 introducerer ikke rigtig andet end forbedringer til JavaScript sproget og nogle få nye features. Det er ikke en alternativ syntax eller sprog ligesom TypeScript. Det er bare helt normalt JavaScript. For at bruge skal du bare installere Babel der konveterer koden.
+
+TypeScript er et “superset” af JavaScript som giver det valgfri statisk indtastning, klasser og interfaces. En af de største fordele er at enable IDE’er for at tilføje et bedre miljø for at opdage almindelige fejl i koden.
+
+>Explain generally about node.js, and when it “makes sense” and npm, and how it “fits” into the node echo system.
+
+Node.js er et “open source”, cross-platform runtime miljø til at udvikle server-side og netværks applikationer. Node.js applikationer er skrevet i Javascript og kan køres inde i Node.js runtime på OS X, Microsoft Windows og Linux. Det giver også et stort bibliotek af forskellige JavaScript moduler som gør det simpelt i udviklingen af web applikationer hvor der bruges Node.js.
+ 
+>Explain about the Event Loop in Node.js
+
+Event-loopet er hvad der gør at Node.js kan udøre “non-blocking Input/Output” operationer selvom javascript kun kører på en tråd. Det gør det hved at offloade operationer til systemets kerne når det er muligt.
+
+[![What the heck is the event loop anyway?](http://img.youtube.com/vi/8aGhZQkoFbQ/0.jpg)](http://www.youtube.com/watch?v=8aGhZQkoFbQ)
+
+>Explain (some) of the purposes with the tools Babel and WebPack, using  examples from the exercises
+
+Babel er en “transpiler” for JavaScript som er mest kendt for at lave ES6 til kode som kan køre i din browser. 
+
+Webpack er en god tilføjelse til en frontend udviklers værktøjssæt. Det er en modulpakker, der passer til de største enkeltwebs applikationer, og kan behandle JavaScript, CSS og meget mere.
+
+>Explain the purpose of “use strict” and also Linters, exemplified with ESLint
+
+Lint var navnet oprindeligt givet til et bestemt program, der markerede nogle mistænkelige og ikke-bærbare konstruktioner (sandsynligvis være fejl) i C-sprog kildekoden. Udtrykket anvendes nu generisk til værktøjer, der markerer mistænkelig brug i software, der er skrevet på et hvilket som helst computersprog. ESlint er en open-source javascript linting utility.
 
 ---
 
@@ -177,5 +187,52 @@ const total = [0, 1, 2, 3].reduce((sum, value) => sum + value, 1);
 
 // total is 7
 ```
+## User defined resusable modules implemented in Node.js
+When you create functions that you want to use in other places you can export them as modules.
+```javascript
+module.exports = {
+    getAllUsers: getAllUsers,
+    addUser: addUser,
+}
+```
 
 ---
+## Callbacks, Promises and async/await
+
+**Serial** and **parallel**:
+
+Here you can clearly see that in the `serial` function, the second `sleep()` is only called after the first `sleep()` has completed, while in `parallel` it's called immediately, before the first has completed, and then it waits for both to complete. So while they may look functionally identical, they are subtly different.
+```javascript
+async function serial() {
+  var a = sleep(); //
+  await a;         // await sleep();
+
+  var b = sleep(); //
+  await b;         // await sleep();
+}
+
+async function parallel() {
+  var a = sleep();
+  var b = sleep();
+  await a;
+  await b;
+}
+```
+
+**Promise-solutions**:
+
+See PromisesExercise ex1.js
+
+**Error handling with promises**:
+```javascript
+Promise.race(promise)
+    .then(reslove => {
+        // Do something here
+    }).catch(reject => {
+        // This is where you handle errors in promises
+    })
+```
+
+**Async/await**:
+
+See Async_functions exercises
