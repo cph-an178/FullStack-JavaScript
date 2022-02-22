@@ -4,7 +4,7 @@
   "description": "",
   "main": "ex1.js",
   "dependencies": {
-    "node-fetch": "^2.0.0",
+    "node-fetch": "^2.6.7",
     "performance-now": "^2.1.0"
   },
   "devDependencies": {},
